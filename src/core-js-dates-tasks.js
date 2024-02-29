@@ -222,7 +222,7 @@ function getNextFridayThe13th(date) {
   let countMonth = startMonth;
 
   let checkDate = new Date(startYear, startMonth, 13);
-  while (checkDate.getUTCDay() !== 4) {
+  while (checkDate.getDay() !== 5) {
     countMonth += 1;
     startMonth = countMonth % 12;
     startYear += Math.floor(countMonth / 12);
