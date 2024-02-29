@@ -173,8 +173,8 @@ function getCountWeekendsInMonth(month, year) {
   const countDayinMonth = new Date(year, month, 0).getDate();
 
   for (let i = 1; i <= countDayinMonth; i += 1) {
-    const checkDateDay = new Date(year, month - 1, i).getUTCDay();
-    if (checkDateDay === 5 || checkDateDay === 6) {
+    const checkDateDay = new Date(year, month - 1, i).getDay();
+    if (checkDateDay === 0 || checkDateDay === 6) {
       countWeekends += 1;
     }
   }
