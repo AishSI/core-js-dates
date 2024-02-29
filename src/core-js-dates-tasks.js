@@ -170,11 +170,10 @@ function formatDate(date) {
  */
 function getCountWeekendsInMonth(month, year) {
   let countWeekends = 0;
-  const currMonth = (month - 1) % 12;
   const countDayinMonth = new Date(year, month, 0).getDate();
 
   for (let i = 1; i <= countDayinMonth; i += 1) {
-    const checkDateDay = new Date(year, currMonth, i).getUTCDay();
+    const checkDateDay = new Date(year, month - 1, i).getUTCDay();
     if (checkDateDay === 5 || checkDateDay === 6) {
       countWeekends += 1;
     }
