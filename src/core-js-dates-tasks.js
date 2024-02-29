@@ -132,10 +132,6 @@ function isDateInPeriod(date, period) {
 
   return checkTime >= startPeriod && checkTime <= endPeriod;
 }
-isDateInPeriod('2024-02-01', {
-  start: '2024-02-02',
-  end: '2024-03-02',
-});
 
 /**
  * Returns the date formatted in 'M/D/YYYY, hh:mm:ss a'.
@@ -148,8 +144,16 @@ isDateInPeriod('2024-02-01', {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    timeZone: 'UTC',
+    hour12: true,
+  };
+  const formatStrDate = new Date(date).toLocaleDateString('en-Us', options);
+  return formatStrDate;
 }
 
 /**
