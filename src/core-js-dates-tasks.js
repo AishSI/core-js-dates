@@ -47,10 +47,8 @@ function getTime(date) {
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
 function getDayName(date) {
-  const res = new Date(date);
   const options = { weekday: 'long', timeZone: 'UTC' };
-  const week = res.toLocaleString('en-US', options);
-  return week;
+  return new Date(date).toLocaleString('en-US', options);
 }
 
 /**
@@ -64,8 +62,12 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const incomingDate = new Date(date);
+  const diffDay = (7 - incomingDate.getDay() + 5) % 7 || 7;
+  const tempDate = incomingDate.setDate(incomingDate.getDate() + diffDay);
+  const nextFriday = new Date(tempDate);
+  return nextFriday;
 }
 
 /**
