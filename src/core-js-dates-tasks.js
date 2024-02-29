@@ -217,16 +217,18 @@ function getWeekNumberByDate(date) {
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
 function getNextFridayThe13th(date) {
-  const startDate = new Date(date);
-  const startYear = startDate.getFullYear();
-  const startMonth = startDate.getMonth();
+  let startYear = date.getFullYear();
+  let startMonth = date.getMonth();
+  let countMonth = startMonth;
 
-  for (let month = startMonth; month < 12; month += 1) {
-    const checkDate = new Date(startYear, month, 13);
-    if (checkDate.getUTCDay() === 4) return checkDate;
+  let checkDate = new Date(startYear, startMonth, 13);
+  while (checkDate.getUTCDay() !== 4) {
+    countMonth += 1;
+    startMonth = countMonth % 12;
+    startYear += Math.floor(countMonth / 12);
+    checkDate = new Date(startYear, startMonth, 13);
   }
-
-  return `no Friday the 13th in ${startYear} year!`;
+  return checkDate;
 }
 
 /**
